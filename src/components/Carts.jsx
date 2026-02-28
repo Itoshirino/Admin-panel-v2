@@ -1,11 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import Table from "./ui/Table.jsx";
 const Carts = () => {
   return (
     <div>
-      <h1>Carts</h1>
+      <Table />
     </div>
-  )
-}
+  );
+};
 
-export default Carts
+export default Carts;
