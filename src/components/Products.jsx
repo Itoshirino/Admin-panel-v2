@@ -6,8 +6,8 @@ const Products = () => {
   const [products, setProduct] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then((data) => {
-      setProduct(data?.data);
+    axios.get("https://dummyjson.com/products").then((data) => {
+      setProduct(data?.data?.products);
     });
   }, []);
 

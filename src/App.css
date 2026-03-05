@@ -94,8 +94,6 @@ h2 {
 .card__left button {
   margin: 20px 0 0 15px;
   border-radius: 20px;
-  color: #ff0000;
-  background: transparent;
   border: none;
   padding: 15px;
   font-weight: 700;
@@ -103,10 +101,6 @@ h2 {
   transition: all 0.3s ease;
 }
 
-.card__left button:hover {
-  color: white;
-  text-decoration: underline;
-}
 
 .card__right {
   flex-grow: 1;
@@ -117,7 +111,7 @@ h2 {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 3;
+  /* z-index: 3; */
   background: rgba(5, 8, 22, 0.85);
   backdrop-filter: blur(10px);
   padding: 18px 30px;
@@ -215,6 +209,15 @@ tbody tr:hover {
   inset: 0;
   background: radial-gradient(black, transparent);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(black, transparent);
   align-items: center;
   justify-content: center;
   z-index: 5;
@@ -371,23 +374,7 @@ tbody tr:hover {
   position: relative;
 }
 
-.logout {
-  margin-top: 10px;
-  margin-left: 15px;
-  margin-top: 20px;
-  border-radius: 20px;
-  color: #ff0000;
-  background: transparent;
-  border: none;
-  padding: 15px 15px;
-  text-align: center;
-  font-weight: 700;
-  transition: all 0.3s ease;
-}
-.logout:hover {
-  text-decoration: underline;
-  color: white;
-}
+
 
 .card__right {
   flex-grow: 1;
@@ -398,7 +385,7 @@ tbody tr:hover {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 3;
+  /* z-index: 3; */
   background: rgba(5, 8, 22, 0.85);
   backdrop-filter: blur(10px);
   padding: 18px 30px;
@@ -498,7 +485,7 @@ tbody tr:hover {
   border-radius: 50%;
   border: none;
 }
-/* .none {
+ .none {
   display: flex;
 }
 .modal {
@@ -508,7 +495,7 @@ tbody tr:hover {
   right: 0;
   bottom: 0;
   background: radial-gradient(black, transparent);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 5;
@@ -634,8 +621,8 @@ tbody tr:hover {
     transform: scale(0.97);
     box-shadow: 0 3px 10px rgba(115, 45, 145, 0.4);
   }
-} */
-/* 
+} 
+
 .edit__modal {
   position: fixed;
   top: 0;
@@ -762,7 +749,7 @@ tbody tr:hover {
     transform: scale(0.97);
     box-shadow: 0 3px 10px rgba(115, 45, 145, 0.4);
   }
-} */
+} 
 
 .container {
   min-height: 100vh;
@@ -878,7 +865,7 @@ tbody tr:hover {
 }
 .Submit {
   width: 100%;
-  min-height: 54px;           /* фиксированная высота — важно для стабильности */
+  min-height: 54px;          
   padding: 16px;
   background: linear-gradient(135deg, #6366f1, #8b5cf6, #3b82f6);
   border: none;
@@ -913,7 +900,6 @@ tbody tr:hover {
   box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
 }
 
-/* когда loading = true */
 .Submit.loading {
   cursor: wait;
 }

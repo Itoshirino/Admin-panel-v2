@@ -1,9 +1,7 @@
 import React from "react";
-import { Toastify } from "toastify";
 import { useLocation } from "react-router-dom";
-const Table = ({ products, users }) => {
+const Table = ({ products }) => {
   const location = useLocation()?.pathname;
-
   console.log(location);
   return (
     <div>
@@ -16,19 +14,11 @@ const Table = ({ products, users }) => {
               <th>Category</th>
               <th>Description</th>
               <th>Price</th>
+              <th>Rating</th>
               <th>Image</th>
               <th>Action</th>
             </tr>
-          ) : (
-            <tr>
-              <th>T/R</th>
-              <th>Username</th>
-              <th>E-mail</th>
-              <th>Tel. number</th>
-              <th>Password</th>
-              <th>Action</th>
-            </tr>
-          )}
+          ) : null}
         </thead>
         <tbody
           style={{ overflowY: "auto", color: "white", maxHeight: "100vh" }}
@@ -37,23 +27,32 @@ const Table = ({ products, users }) => {
             ? products.length
               ? products.map(
                   (
-                    { title, price, image, description, category, id },
+                    {
+                      title,
+                      price,
+                      description,
+                      category,
+                      id,
+                      rating,
+                      thumbnail,
+                    },
                     index,
                   ) => (
                     <tr key={id}>
-                      <td>{index}</td>
+                      <td>{index + 1}</td>
                       <td>{title}</td>
                       <td>{category}</td>
                       <td>{description}</td>
                       <td>{price}</td>
+                      <td>{rating}</td>
                       <td>
                         <img
-                          src={image}
+                          src={thumbnail}
+                          alt={title}
                           style={{
-                            width: "60px",
-                            height: "40px",
-                            background: "#333",
-                            borderRadius: "4px",
+                            width: "50px",
+                            height: "50px",
+                            objectFit: "contain",
                           }}
                         />
                       </td>
@@ -69,25 +68,7 @@ const Table = ({ products, users }) => {
                   ),
                 )
               : null
-            : users.length
-              ? users.map(({ id, username, email, phone, password }, index) => (
-                  <tr key={id}>
-                    <td>{index + 1}</td>
-                    <td>{username}</td>
-                    <td>{email}</td>
-                    <td>{phone}</td>
-                    <td>{password}</td>
-                    <td className="action__buttons">
-                      <button className="edit__btn">
-                        <i className="ri-pencil-line"></i> Edit
-                      </button>
-                      <button className="delete">
-                        <i className="ri-delete-bin-line"></i> Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              : null}
+            : null}
         </tbody>
       </table>
     </div>
