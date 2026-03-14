@@ -7,15 +7,20 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "all": "concurrently \"npm run dev\" \"npx json-server db.json\""
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.2.1",
     "axios": "^1.13.5",
+    "concurrently": "^9.2.1",
+    "json-server": "^1.0.0-beta.12",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.13.1",
     "react-toastify": "^11.0.5",
     "remixicon": "^4.9.1",
+    "tailwindcss": "^4.2.1",
     "toastify": "^2.0.1"
   },
   "devDependencies": {

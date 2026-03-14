@@ -1,10 +1,20 @@
 import React from "react";
-import Router from "./router/Router.jsx";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Dashboard from "./components/Dashboard"
+import Products from "./components/Products"
+import Users from "./components/Users"
+import Carts from "./components/Users"
 const App = () => {
   return (
     <div>
-      <Router />
+      <Routes>
+        <Route path="/" element={<Dashboard />}>
+          <Route path="/products" element={<Products />}/>
+          <Route path="/users" element={<Users />}/>
+          <Route path="/carts" element={<Carts />}/>
+        </Route>
+      </Routes>
     </div>
   );
 };
