@@ -4,7 +4,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard"
 import Products from "./components/Products"
 import Users from "./components/Users"
-import Carts from "./components/Users"
+import Carts from "./components/Carts"
 const App = () => {
   return (
     <div>

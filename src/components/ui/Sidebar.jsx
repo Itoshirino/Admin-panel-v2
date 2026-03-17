@@ -1,9 +1,5 @@
 import { NavLink } from "react-router-dom";
 const Sidebar = () => {
-  const modal = document.querySelector(".modal");
-  const OpenModal = () => {
-    modal.classList.add(".none");
-  };
   return (
     <div
       style={{
@@ -21,15 +17,21 @@ const Sidebar = () => {
                   <i className="ri-home-4-line icon1"></i> Home
                 </NavLink>
               </li>
-
               <li>
                 <NavLink to="/products" className="nav__link4">
                   <i className="ri-bar-chart-2-line"></i> Products
                 </NavLink>
               </li>
-
-             
-             
+              <li>
+                <NavLink to="/users" className="nav__link4">
+                  <i className="ri-group-line"></i> Users
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/carts" className="nav__link4">
+                  <i className="ri-shopping-bag-line"></i> Carts
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>

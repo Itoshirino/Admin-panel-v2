@@ -2,7 +2,6 @@ import React from "react";
 import Table from "./ui/Table.jsx";
 import axios from "axios";
 import { useState, useEffect } from "react";
-<script src="http://localhost:8097"></script>;
 
 const Products = () => {
   const [products, setProduct] = useState([]);
@@ -11,11 +10,11 @@ const Products = () => {
     axios
       .get("http://localhost:3000/products")
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setProduct(data?.data);
         setLoading(false);
       })
-      .catch(() => setLoading(false), console.error("error"));
+      .catch(() => setLoading(false));
   }, []);
 
   if (loading) {

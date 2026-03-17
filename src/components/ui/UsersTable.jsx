@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import EditModal from "../EditModal";
-import AddModal from "../AddModal";
-import ViewModal from "../ViewModal";
+import UsersEditModal from "../UsersEditModal.jsx";
+import UsersAddModal from "../UsersAddModal.jsx";
+import UsersViewModal from "../UsersViewModal.jsx";
 import axios from "axios";
-import Sidebar from "./Sidebar";
 
-const Table = ({ products }) => {
+const UsersTable = ({ users }) => {
   const location = useLocation()?.pathname;
   const [editModal, setEditModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
@@ -32,8 +31,8 @@ const Table = ({ products }) => {
   }, [viewId]);
 
   const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
-      axios.delete(`http://localhost:3000/products/${id}`).then((data) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      axios.delete(`http://localhost:3000/users/${id}`).then((data) => {
         console.log(data);
       });
     } else {
@@ -43,13 +42,13 @@ const Table = ({ products }) => {
   return (
     <div className="min-h-screen bg-[#0a0a0f] p-8">
       {editModal ? (
-        <EditModal setEditModal={setEditModal} editId={editId} />
+        <UsersEditModal setEditModal={setEditModal} editId={editId} />
       ) : null}
-      {addModal ? <AddModal setAddModal={setAddModal} /> : null}
+      {addModal ? <UsersAddModal setAddModal={setAddModal} /> : null}
       {viewModal ? (
-        <ViewModal setViewModal={setViewModal} viewId={viewId} />
+        <UsersViewModal setViewModal={setViewModal} viewId={viewId} />
       ) : null}
-      {location === "/products" ? (
+      {location === "/users" ? (
         <button onClick={handleAddModal} className="create__btn">
           <i className="ri-add-line"></i> Create Task
         </button>
@@ -60,7 +59,7 @@ const Table = ({ products }) => {
         className="w-full border-separate border-spacing-0 overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02]"
       >
         <thead>
-          {location === "/products" ? (
+          {location === "/users" ? (
             <tr className="border-b border-white/[0.07]">
               <th className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30">
                 T/R
@@ -69,16 +68,19 @@ const Table = ({ products }) => {
                 Name
               </th>
               <th className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30">
-                Category
+                Role
               </th>
               <th className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30">
-                Description
+                E-mail
               </th>
               <th className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30">
-                Price
+                Joined
               </th>
               <th className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30">
-                Image
+                Country
+              </th>
+              <th className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30">
+                Avatar
               </th>
               <th className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30">
                 Action
@@ -90,11 +92,11 @@ const Table = ({ products }) => {
           style={{ overflowY: "auto", color: "white", maxHeight: "100vh" }}
           className="divide-y divide-white/[0.04]"
         >
-          {location === "/products"
-            ? products.length
-              ? products.map(
+          {location === "/users"
+            ? users.length
+              ? users.map(
                   (
-                    { name, price, description, category, id, image },
+                    { name, role, avatar, email, id, joined, country },
                     index,
                   ) => (
                     <tr
@@ -109,19 +111,22 @@ const Table = ({ products }) => {
                       </td>
                       <td className="px-6 py-4">
                         <span className="inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-300 ring-1 ring-inset ring-indigo-500/20">
-                          {category}
+                          {role}
                         </span>
                       </td>
                       <td className="max-w-[500px] px-6 py-4 text-sm text-white/40 truncate">
-                        {description}
+                        {email}
                       </td>
                       <td className="px-6 py-4 text-sm font-semibold text-emerald-400">
-                        {price}$
+                        {joined}
+                      </td>
+                      <td className="px-6 py-4 text-sm font-semibold text-emerald-400">
+                        {country}
                       </td>
                       <td className="px-6 py-4">
                         <div className="h-12 w-12 overflow-hidden rounded-xl bg-white/5 ring-1 ring-white/10">
                           <img
-                            src={image}
+                            src={avatar}
                             alt={name}
                             style={{
                               width: "50px",
@@ -171,11 +176,11 @@ const Table = ({ products }) => {
         </tbody>
       </table>
 
-      {products.length === 0 ? (
-        <div className="text-center py-12 text-gray-400">No products</div>
+      {users.length === 0 ? (
+        <div className="text-center py-12 text-gray-400">No users</div>
       ) : null}
     </div>
   );
 };
 
-export default Table;
+export default UsersTable;

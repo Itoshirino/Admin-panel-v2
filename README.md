@@ -13,8 +13,3 @@ If you are developing a production application, we recommend using TypeScript wi
 
 # Admin-panel-v2
 
- <li>
-                <button onClick={OpenModal} className="create__btn">
-                  <i className="ri-add-line"></i> Create Task
-                </button>
-              </li>

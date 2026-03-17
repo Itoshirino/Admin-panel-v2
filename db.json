@@ -1,23 +1,6 @@
 {
   "products": [
     {
-      "id": "2",
-      "name": "Apple MacBook Pro 14",
-      "price": 1999.99,
-      "category": "Computers",
-      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80",
-      "description": "M3 Pro chip, 18GB RAM, 512GB SSD"
-    },
-
-    {
-      "id": "3",
-      "name": "Nike Air Max 270",
-      "price": 149.99,
-      "category": "Footwear",
-      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80",
-      "description": "Lightweight running shoes with Max Air cushioning"
-    },
-    {
       "id": "4",
       "name": "Dyson V15 Detect Vacuum",
       "price": 749.99,
@@ -156,13 +139,13 @@
   ],
   "users": [
     {
-      "id": "1",
       "name": "James Anderson",
       "email": "james.anderson@gmail.com",
-      "avatar": "https://i.pravatar.cc/150?img=1",
       "role": "Admin",
+      "avatar": "https://i.pravatar.cc/150?img=1",
       "joined": "2021-03-15",
-      "country": "United States"
+      "country": "United States",
+      "id": "1"
     },
     {
       "id": "2",
@@ -338,13 +321,13 @@
   ],
   "carts": [
     {
-      "id": "1",
       "make": "Toyota",
       "model": "Land Cruiser 300",
       "year": 2023,
-      "price": 85000,
+      "image": "https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=400&q=80",
       "color": "Pearl White",
-      "image": "https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=400&q=80"
+      "price": 85000,
+      "id": "1"
     },
     {
       "id": "2",
@@ -371,7 +354,7 @@
       "year": 2023,
       "price": 182450,
       "color": "Obsidian Black",
-      "image": "https://images.unsplash.com/photo-1564518894561-eeca2a7e3c8d?w=400&q=80"
+      "image": "https://i.ytimg.com/vi/xHKy-2dgG_U/maxresdefault.jpg"
     },
     {
       "id": "5",
@@ -479,7 +462,7 @@
       "year": 2023,
       "price": 44990,
       "color": "Boost Blue Pearl",
-      "image": "https://images.unsplash.com/photo-1583267702057-20cebe64c3f3?w=400&q=80"
+      "image": "https://s.auto.drom.ru/d24315/foreignimport/1393630794/gen580x2_1532228710.jpg"
     },
     {
       "id": "17",

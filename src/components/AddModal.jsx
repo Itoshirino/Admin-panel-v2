@@ -1,9 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const EditModal = ({ setEditModal, editId }) => {
-  const [formData, setFormData] = useState({
-    id: editId,
+const AddModal = ({ setAddModal }) => {
+  const [addFormData, setAddFormData] = useState({
     name: "",
     price: 0,
     category: "",
@@ -11,35 +10,20 @@ const EditModal = ({ setEditModal, editId }) => {
     description: "",
   });
 
-  useEffect(() => {
-    axios.get(`http://localhost:3000/products/${editId}`).then((data) => {
-      const res = data?.data;
-      setFormData({
-        name: res?.name,
-        price: res?.price,
-        category: res?.category,
-        image: res?.image,
-        description: res?.description,
-      });
-    });
-  }, [editId]);
-
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    e.preventDefault();
+    setAddFormData({
+      ...addFormData,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3000/products/${editId}`, formData)
-      .then((data) => {
-        console.log(data);
-      });
+    axios.post(`http://localhost:3000/products`, addFormData).then(() => {
+      setAddModal(false);
+    });
   };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="relative w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-[#0d0d14] shadow-2xl shadow-black/60 box1">
@@ -51,7 +35,7 @@ const EditModal = ({ setEditModal, editId }) => {
             Dashboard
           </p>
           <h2 className="mt-1 text-2xl font-light tracking-tight text-white">
-            Edit Product
+            Add Product
           </h2>
         </div>
 
@@ -66,7 +50,7 @@ const EditModal = ({ setEditModal, editId }) => {
               type="text"
               placeholder="write name"
               name="name"
-              value={formData.name}
+              value={addFormData.name}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
@@ -81,7 +65,7 @@ const EditModal = ({ setEditModal, editId }) => {
               type="number"
               placeholder="write price"
               name="price"
-              value={formData.price}
+              value={addFormData.price}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-emerald-400 placeholder-white/20 outline-none transition-all duration-200 focus:border-emerald-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-emerald-500/20"
             />
           </div>
@@ -96,7 +80,7 @@ const EditModal = ({ setEditModal, editId }) => {
               type="text"
               placeholder="write category"
               name="category"
-              value={formData.category}
+              value={addFormData.category}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
@@ -111,7 +95,7 @@ const EditModal = ({ setEditModal, editId }) => {
               type="url"
               placeholder="write image"
               name="image"
-              value={formData.image}
+              value={addFormData.image}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-violet-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-violet-500/20"
             />
           </div>
@@ -126,7 +110,7 @@ const EditModal = ({ setEditModal, editId }) => {
               type="text"
               placeholder="write description"
               name="description"
-              value={formData.description}
+              value={addFormData.description}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
@@ -142,7 +126,7 @@ const EditModal = ({ setEditModal, editId }) => {
             </button>
             <button
               type="button"
-              onClick={() => setEditModal(false)}
+              onClick={() => setAddModal(false)}
               className="flex-1 btn2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white/50 transition-all duration-200 hover:bg-white/[0.08] hover:text-white/80 hover:border-white/20"
             >
               Cancel
@@ -154,4 +138,4 @@ const EditModal = ({ setEditModal, editId }) => {
   );
 };
 
-export default EditModal;
+export default AddModal;

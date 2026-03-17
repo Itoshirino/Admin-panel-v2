@@ -177,7 +177,7 @@ h2 {
 .navbar {
   position: sticky;
   top: 0;
-  /* z-index: 3; */
+  /* z-index: 3;   */
   background: rgba(5, 8, 22, 0.85);
   backdrop-filter: blur(10px);
   padding: 18px 30px;
@@ -331,4 +331,34 @@ tbody tr:hover {
 .btn,
 .btn2 {
   padding: 5px;
+}
+
+.create__btn {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #8e44ad;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+
+  i {
+    font-size: 16px;
+    transition: all 2s ease;
+  }
+}
+.create__btn:hover {
+  background: #732d91;
+}
+i {
+  transform: rotate(3600deg) scale(1.2);
+}
+.create__btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 10px rgba(115, 45, 145, 0.4);
 }

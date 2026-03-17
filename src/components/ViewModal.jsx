@@ -1,9 +1,10 @@
-import axios from "axios";
+import React from "react";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
-const EditModal = ({ setEditModal, editId }) => {
-  const [formData, setFormData] = useState({
-    id: editId,
+const ViewModal = ({ setViewModal, viewId }) => {
+  const [viewFormData, viewSetFormData] = useState({
+    id: viewId,
     name: "",
     price: 0,
     category: "",
@@ -12,9 +13,10 @@ const EditModal = ({ setEditModal, editId }) => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/products/${editId}`).then((data) => {
+    axios.get(`http://localhost:3000/products/${viewId}`).then((data) => {
       const res = data?.data;
-      setFormData({
+      viewSetFormData({
+        id: viewId,
         name: res?.name,
         price: res?.price,
         category: res?.category,
@@ -22,11 +24,11 @@ const EditModal = ({ setEditModal, editId }) => {
         description: res?.description,
       });
     });
-  }, [editId]);
+  }, [viewId]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    viewSetFormData({
+      ...viewFormData,
       [e.target.name]: e.target.value,
     });
   };
@@ -34,9 +36,10 @@ const EditModal = ({ setEditModal, editId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/products/${editId}`, formData)
+      .put(`http://localhost:3000/products/${viewId}`, viewFormData)
       .then((data) => {
         console.log(data);
+        setViewModal(false);
       });
   };
 
@@ -51,7 +54,7 @@ const EditModal = ({ setEditModal, editId }) => {
             Dashboard
           </p>
           <h2 className="mt-1 text-2xl font-light tracking-tight text-white">
-            Edit Product
+            View Product
           </h2>
         </div>
 
@@ -61,12 +64,12 @@ const EditModal = ({ setEditModal, editId }) => {
               Name
             </label>
             <input
-              required
+              disabled
               onChange={handleChange}
               type="text"
               placeholder="write name"
               name="name"
-              value={formData.name}
+              value={viewFormData.name}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
@@ -76,12 +79,12 @@ const EditModal = ({ setEditModal, editId }) => {
               Price
             </label>
             <input
-              required
+              disabled
               onChange={handleChange}
               type="number"
               placeholder="write price"
               name="price"
-              value={formData.price}
+              value={viewFormData.price}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-emerald-400 placeholder-white/20 outline-none transition-all duration-200 focus:border-emerald-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-emerald-500/20"
             />
           </div>
@@ -91,12 +94,12 @@ const EditModal = ({ setEditModal, editId }) => {
               Category
             </label>
             <input
-              required
+              disabled
               onChange={handleChange}
               type="text"
               placeholder="write category"
               name="category"
-              value={formData.category}
+              value={viewFormData.category}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
@@ -106,12 +109,12 @@ const EditModal = ({ setEditModal, editId }) => {
               Image URL
             </label>
             <input
-              required
+              disabled
               onChange={handleChange}
               type="url"
               placeholder="write image"
               name="image"
-              value={formData.image}
+              value={viewFormData.image}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-violet-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-violet-500/20"
             />
           </div>
@@ -121,28 +124,22 @@ const EditModal = ({ setEditModal, editId }) => {
               Description
             </label>
             <input
-              required
+              disabled
               onChange={handleChange}
               type="text"
               placeholder="write description"
               name="description"
-              value={formData.description}
+              value={viewFormData.description}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
 
           <div className="my-2 h-px bg-white/[0.06]" />
 
-          <div className="box flex gap-3 pt-1 ">
-            <button
-              type="submit"
-              className="relative btn flex-1 overflow-hidden rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-all duration-200 hover:bg-indigo-500 hover:shadow-indigo-500/50 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              Save Changes
-            </button>
+          <div className="box flex gap-3 pt-1">
             <button
               type="button"
-              onClick={() => setEditModal(false)}
+              onClick={() => setViewModal(false)}
               className="flex-1 btn2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white/50 transition-all duration-200 hover:bg-white/[0.08] hover:text-white/80 hover:border-white/20"
             >
               Cancel
@@ -154,4 +151,4 @@ const EditModal = ({ setEditModal, editId }) => {
   );
 };
 
-export default EditModal;
+export default ViewModal;

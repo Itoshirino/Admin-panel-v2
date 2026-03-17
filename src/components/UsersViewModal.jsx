@@ -1,42 +1,40 @@
-import axios from "axios";
+import React from "react";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
-const EditModal = ({ setEditModal, editId }) => {
-  const [formData, setFormData] = useState({
-    id: editId,
+const UsersViewModal = ({ setViewModal, viewId }) => {
+  const [viewFormData, viewSetFormData] = useState({
+    id: viewId,
     name: "",
-    price: 0,
-    category: "",
-    image: "",
-    description: "",
+    email: 0,
+    role: "",
+    avatar: "",
+    joined: "",
+    country: "",
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/products/${editId}`).then((data) => {
+    axios.get(`http://localhost:3000/users/${viewId}`).then((data) => {
       const res = data?.data;
-      setFormData({
+      viewSetFormData({
+        id: viewId,
         name: res?.name,
-        price: res?.price,
-        category: res?.category,
-        image: res?.image,
-        description: res?.description,
+        email: res?.email,
+        role: res?.role,
+        avatar: res?.avatar,
+        joined: res?.joined,
+        country: res?.country,
       });
     });
-  }, [editId]);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  }, [viewId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/products/${editId}`, formData)
+      .put(`http://localhost:3000/users/${viewId}`, viewFormData)
       .then((data) => {
         console.log(data);
+        setViewModal(false);
       });
   };
 
@@ -51,7 +49,7 @@ const EditModal = ({ setEditModal, editId }) => {
             Dashboard
           </p>
           <h2 className="mt-1 text-2xl font-light tracking-tight text-white">
-            Edit Product
+            View users
           </h2>
         </div>
 
@@ -61,88 +59,91 @@ const EditModal = ({ setEditModal, editId }) => {
               Name
             </label>
             <input
-              required
-              onChange={handleChange}
+              disabled
               type="text"
               placeholder="write name"
               name="name"
-              value={formData.name}
+              value={viewFormData.name}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
 
           <div className="group relative">
             <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-white/30">
-              Price
+              E-mail
             </label>
             <input
-              required
-              onChange={handleChange}
-              type="number"
-              placeholder="write price"
-              name="price"
-              value={formData.price}
+              disabled
+              type="text"
+              placeholder="write email"
+              name="email"
+              value={viewFormData.email}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-emerald-400 placeholder-white/20 outline-none transition-all duration-200 focus:border-emerald-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-emerald-500/20"
             />
           </div>
 
           <div className="group relative">
             <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-white/30">
-              Category
+              Role
             </label>
             <input
-              required
-              onChange={handleChange}
+              disabled
               type="text"
-              placeholder="write category"
-              name="category"
-              value={formData.category}
+              placeholder="write role"
+              name="role"
+              value={viewFormData.role}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
 
           <div className="group relative">
             <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-white/30">
-              Image URL
+              Avatar URL
             </label>
             <input
-              required
-              onChange={handleChange}
+              disabled
               type="url"
-              placeholder="write image"
-              name="image"
-              value={formData.image}
+              placeholder="write avatar"
+              name="avatar"
+              value={viewFormData.avatar}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-violet-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-violet-500/20"
             />
           </div>
 
           <div className="group relative">
             <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-white/30">
-              Description
+              Joined
             </label>
             <input
-              required
-              onChange={handleChange}
+              disabled
               type="text"
-              placeholder="write description"
-              name="description"
-              value={formData.description}
+              placeholder="write joined"
+              name="joined"
+              value={viewFormData.joined}
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
+            />
+          </div>
+
+          <div className="group relative">
+            <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-white/30">
+              Country
+            </label>
+            <input
+              disabled
+              type="text"
+              placeholder="write country"
+              name="country"
+              value={viewFormData.country}
               className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 focus:border-indigo-500/60 focus:bg-white/[0.07] focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
 
           <div className="my-2 h-px bg-white/[0.06]" />
 
-          <div className="box flex gap-3 pt-1 ">
-            <button
-              type="submit"
-              className="relative btn flex-1 overflow-hidden rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-all duration-200 hover:bg-indigo-500 hover:shadow-indigo-500/50 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              Save Changes
-            </button>
+          <div className="box flex gap-3 pt-1">
             <button
               type="button"
-              onClick={() => setEditModal(false)}
+              onClick={() => setViewModal(false)}
               className="flex-1 btn2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white/50 transition-all duration-200 hover:bg-white/[0.08] hover:text-white/80 hover:border-white/20"
             >
               Cancel
@@ -154,4 +155,4 @@ const EditModal = ({ setEditModal, editId }) => {
   );
 };
 
-export default EditModal;
+export default UsersViewModal;

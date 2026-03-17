@@ -3,8 +3,7 @@ import "../App.css";
 import "remixicon/fonts/remixicon.css";
 import Sidebar from "./ui/Sidebar";
 import Navbar from "./ui/Navbar";
-import Table from "./ui/Table";
-import Products from "./Products";
+import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -16,7 +15,7 @@ const Dashboard = () => {
         >
           <Navbar />
           <div style={{ maxHeight: "100vh", overflow: "auto" }}>
-            <Products />
+            <Outlet />
           </div>
         </div>
       </div>
